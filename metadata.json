@@ -14,6 +14,7 @@
     "LICENSE": "4c2742c90e85dd53a38a0009c9f2868c",
     "Modulefile": "47516c63d722ddb219f68ee04046c07c",
     "README.md": "6182bcd7e844ca5fa77e64f96c004567",
+    "Rakefile": "f37e6131fe7de9a49b09d31596f5fbf1",
     "files/clean-grid-env-funcs.sh": "4791fc7f4ecbd4bbbd39d6b4b9c1e070",
     "files/grid-env-funcs.sh": "359d1c8e056d6f0c6bcbe61754ab1763",
     "lib/puppet/parser/functions/getuids.rb": "892c80cb4036138e4c112bd0f837d207",
