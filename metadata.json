@@ -8,6 +8,8 @@
   "summary": "VO default definitions and setup tools",
   "version": "0.0.1",
   "checksums": {
+    ".gemfile": "f2a73f3c76933e38e004d3c2a939c56c",
+    ".travis.yml": "423b3afa6b2a26cee85e82b1662aafcf",
     "CHANGELOG": "1bbcfc22a4a82019611b33971cd4c42a",
     "LICENSE": "4c2742c90e85dd53a38a0009c9f2868c",
     "Modulefile": "47516c63d722ddb219f68ee04046c07c",
@@ -46,7 +48,8 @@
     "templates/gridmapfile.erb": "e3f43d360169c048ad0e6bc00654c619",
     "templates/groupmapfile.erb": "573ae7e6b5c421bb73d7c2dcafd375de",
     "templates/lcgdm-mkgridmap.conf.erb": "f36c60ab22673c8990a3a3128aa4c154",
-    "templates/lcgdm-mkgridmap.conf_footer.erb": "a25b223fcee0f64da548cc7cdb128389"
+    "templates/lcgdm-mkgridmap.conf_footer.erb": "a25b223fcee0f64da548cc7cdb128389",
+    "tests/init.pp": "39d50a8f939aac370050112569a3620a"
   },
   "types": [
     {
