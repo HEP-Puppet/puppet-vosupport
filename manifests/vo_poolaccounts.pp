@@ -5,10 +5,6 @@ class vosupport::vo_poolaccounts() inherits vosupport::uidmap
     ensure => present,
   }
   
-  #
-  # we need to assume that /pool is already there
-  #
-  
   file {
     '/home':
       ensure => directory,
@@ -17,13 +13,13 @@ class vosupport::vo_poolaccounts() inherits vosupport::uidmap
       mode    => 0755,
   }
   
-  file {
-    '/pool/grid':
-      # require => File['/pool'],
-      ensure => directory,
-      owner   => root,
-      group   => root,
-      mode    => 0755,
+  file { [
+    '/pool',
+    '/pool/grid']:
+    ensure => directory,
+    owner  => root,
+    group  => root,
+    mode   => 0755,
   }
   
   file {'/home/grid':
