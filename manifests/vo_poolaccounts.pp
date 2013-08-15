@@ -10,7 +10,7 @@ class vosupport::vo_poolaccounts() inherits vosupport::uidmap
   #
   
   file {
-    "/home":
+    '/home':
       ensure => directory,
       owner   => root,
       group   => root,
@@ -18,7 +18,7 @@ class vosupport::vo_poolaccounts() inherits vosupport::uidmap
   }
   
   file {
-    "/pool/grid":
+    '/pool/grid':
       # require => File['/pool'],
       ensure => directory,
       owner   => root,
@@ -26,9 +26,9 @@ class vosupport::vo_poolaccounts() inherits vosupport::uidmap
       mode    => 0755,
   }
   
-  file {"/home/grid":
+  file {'/home/grid':
     ensure  => link,
-    target => "/pool/grid"
+    target => '/pool/grid'
   }
 
   $poolaccounts = hiera_hash('vosupport::poolaccounts',undef)
