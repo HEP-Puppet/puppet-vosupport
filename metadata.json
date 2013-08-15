@@ -1,57 +1,19 @@
 {
   "name": "heppuppet-vosupport",
+  "version": "0.0.1",
+  "summary": "VO default definitions and setup tools",
   "author": "schwicke",
   "description": "This modules provides classes and definitions required to setup a list of supported VOs.",
-  "license": "Apache License, Version 2.0 (the \"License\")",
-  "project_page": "http://www.eu-emi.eu/",
-  "source": "",
-  "summary": "VO default definitions and setup tools",
-  "version": "0.0.1",
-  "checksums": {
-    ".gemfile": "f2a73f3c76933e38e004d3c2a939c56c",
-    ".travis.yml": "fc8186c6d4628043bd108788a49c595c",
-    "CHANGELOG": "1bbcfc22a4a82019611b33971cd4c42a",
-    "LICENSE": "4c2742c90e85dd53a38a0009c9f2868c",
-    "Modulefile": "47516c63d722ddb219f68ee04046c07c",
-    "README.md": "22871c0b5e86568bc8d0ba0928d81036",
-    "Rakefile": "f37e6131fe7de9a49b09d31596f5fbf1",
-    "files/clean-grid-env-funcs.sh": "4791fc7f4ecbd4bbbd39d6b4b9c1e070",
-    "files/grid-env-funcs.sh": "359d1c8e056d6f0c6bcbe61754ab1763",
-    "lib/puppet/parser/functions/getuids.rb": "892c80cb4036138e4c112bd0f837d207",
-    "lib/puppet/parser/functions/uidfilterbygid.rb": "b835af3a889ee54ff056cef8549f5ca5",
-    "lib/puppet/provider/gridmapdirentry/gridmapdirentry.rb": "1330e1449f1da578f93aceee1b0b6b8f",
-    "lib/puppet/provider/poolhome/poolhome.rb": "5991a0cda4745176947a3f1ed5b90c02",
-    "lib/puppet/type/gridmapdirentry.rb": "589423e87af3da68cae5101edda22b25",
-    "lib/puppet/type/poolhome.rb": "a9118f41cad89b88b577139d0067e7e3",
-    "manifests/enable_lcgdm_vo.pp": "27a5b3e3c0695f0435ad715da04812e3",
-    "manifests/enable_vo.pp": "31055b36b9ac072d0e9833bc68c2135c",
-    "manifests/init.pp": "e8748d00b4ba10a63848df36c9493c23",
-    "manifests/setupgridmapdir.pp": "115e2831d75511a91a11cae990352cc9",
-    "manifests/setuphome.pp": "2ee3e058812b9448670701166cdd66fd",
-    "manifests/test.pp": "d896aa7d106fa80f4cb68d47e10ee2bf",
-    "manifests/uidmap.pp": "b2c2ce35fd6dae94922bb4675a39e13b",
-    "manifests/virtual_setupgridmapdir.pp": "b3958915ce07a67048484e861c9556c5",
-    "manifests/virtual_setuphome.pp": "ff6e51e89fe1490ebcd05db9a446659f",
-    "manifests/virtual_voenv.pp": "53c33ec96723cae77f4f1e0f6b88805b",
-    "manifests/vo_environment.pp": "d89b1c6b41829d5451d5f8b737bfccbe",
-    "manifests/vo_gridmapdir.pp": "2b33e49478b62b834a7c60a3586301a6",
-    "manifests/vo_lcgdm_mappings.pp": "c33c2245ca8e929c3887871773827655",
-    "manifests/vo_mappings.pp": "655698b9086450b99bc022b9deee40e0",
-    "manifests/vo_poolaccounts.pp": "4b2831ae65a89653f2af98de9ab17c7b",
-    "manifests/voenv.pp": "4b608f7f835aa876db476c9fa3e59bd0",
-    "manifests/vos/atlas.pp": "3d7cf68f368b7065e3c0a922554d8b14",
-    "manifests/vos/dteam.pp": "3d033f70d84cabedb2ff3c4005afa570",
-    "spec/spec_helper.rb": "a55d1e6483344f8ec6963fcb2c220372",
-    "templates/grid-vo-env.csh.erb": "baa1e6610cd3b2750087fa925d931fe8",
-    "templates/gridenv-vo.sh.erb": "4d5a0509592f4839fe9b888f6675e7a3",
-    "templates/gridenvsh_footer.erb": "fe7855d47450a47fb30ffd2887849fae",
-    "templates/gridenvsh_header.erb": "4b55385caa86cf65ccc93f94576cc88a",
-    "templates/gridmapfile.erb": "e3f43d360169c048ad0e6bc00654c619",
-    "templates/groupmapfile.erb": "573ae7e6b5c421bb73d7c2dcafd375de",
-    "templates/lcgdm-mkgridmap.conf.erb": "f36c60ab22673c8990a3a3128aa4c154",
-    "templates/lcgdm-mkgridmap.conf_footer.erb": "a25b223fcee0f64da548cc7cdb128389",
-    "tests/init.pp": "39d50a8f939aac370050112569a3620a"
-  },
+  "dependencies": [
+    {
+      "name": "ripienaar/concat",
+      "version_requirement": "\u003e\u003d0.2.0"
+    },
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": "\u003e\u003d4.0.0"
+    }
+  ],
   "types": [
     {
       "parameters": [
@@ -126,14 +88,8 @@
       "doc": "ensures that file entries for pool accounts are present in gridmapdir"
     }
   ],
-  "dependencies": [
-    {
-      "name": "puppetlabs/stdlib",
-      "version_requirement": "~4"
-    },
-    {
-      "name": "ripienaar/concat",
-      "version_requirement": "\u003e\u003d0.2.0"
-    }
-  ]
+  "checksums": {},
+  "source": "",
+  "project_page": "http://www.eu-emi.eu/",
+  "license": "Apache License, Version 2.0 (the \"License\")"
 }
