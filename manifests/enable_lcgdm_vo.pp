@@ -4,9 +4,7 @@ define vosupport::enable_lcgdm_vo (
    $gridservice="LFC"
 )
 {
-   $vomappingdata = hiera_hash('vosupport::mappings',undef)
-   $poolaccounts  = hiera_hash('vosupport::poolaccounts',undef)
-   $vomsservers   = hiera_hash('vosupport::vomsservers',undef)
+   include vosupport::params
    $configfile    = "/etc/lcgdm-mkgridmap.conf"
 
    concat::fragment{"${voname}_lcgdmmkgridmapconf":

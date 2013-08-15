@@ -1,5 +1,5 @@
 #initialize VO environment virtual resources
-class vosupport::vo_environment()
+class vosupport::vo_environment($voenvdefaults = $vosupport::params::voenvdefaults) inherits vosupport::params
 {
   
   $gridenvfile = '/etc/profile.d/grid-vo-env.sh'
@@ -34,8 +34,6 @@ class vosupport::vo_environment()
     content => template("vosupport/grid-vo-env.csh.erb"),
   }
 
-  
-  $voenvdefaults = hiera_hash('vosupport::voenv',undef)
   create_resources('vosupport::virtual_voenv',$voenvdefaults)
 }
 

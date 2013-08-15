@@ -5,7 +5,7 @@ define vosupport::setuphome (
   $digits=3,
   $homeroot='/pool/grid',
   $voname='',
-)
+) 
 {
   if ($prefix){
     if ($vosupport::uidmap::vo2gidmap[$voname]){

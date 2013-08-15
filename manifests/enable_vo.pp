@@ -39,15 +39,13 @@ define vosupport::enable_vo (
     
     if $enable_mappings_for_service != undef {
       include vosupport::vo_mappings
+      include vosupport::params
       
-      #create file fragments for the specified VO and service
-      $vomappingdata = hiera_hash('vosupport::mappings',undef)
-      
-      concat::fragment{"${voname}_mapfile": 
-	target  => "/etc/grid-security/grid-mapfile",
-	order   => "9",
-	content => template('vosupport/gridmapfile.erb'),
-      }
+      concat::fragment { "${voname}_mapfile":
+      target  => "/etc/grid-security/grid-mapfile",
+      order   => "9",
+      content => template('vosupport/gridmapfile.erb'),
+    }
       
       concat::fragment{"${voname}_vomsmapfile": 
         target  => "/etc/grid-security/voms-grid-mapfile",
