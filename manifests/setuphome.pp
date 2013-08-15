@@ -1,36 +1,33 @@
 define vosupport::setuphome (
-  $prefix=$name,
+  $prefix   = $name,
   $number,
-  $start=1,
-  $digits=3,
-  $homeroot='/pool/grid',
-  $voname='',
-) 
-{
-  if ($prefix){
-    if ($vosupport::uidmap::vo2gidmap[$voname]){
+  $start    = 1,
+  $digits   = 3,
+  $homeroot = '/pool/grid',
+  $voname   = '',) {
+  if ($prefix) {
+    if ($vosupport::uidmap::vo2gidmap[$voname]) {
       $gid = $vosupport::uidmap::vo2gidmap[$voname]
-      poolhome {$prefix:
-        ensure => present,
-        number => $number,
-        start  => $start,
-        digits => $digits,
-        homeroot => $homeroot,
-        uidmap => uidfilterbygid($vosupport::uidmap::uidmap,$gid),
+
+      poolhome { $prefix:
+        ensure     => present,
+        number     => $number,
+        start      => $start,
+        digits     => $digits,
+        homeroot   => $homeroot,
+        uidmap     => uidfilterbygid($vosupport::uidmap::uidmap, $gid),
         defaultgid => $gid,
-        require => File[$homeroot],
+        require    => File[$homeroot],
       }
-    }
-    else
-    {
-      poolhome {$prefix:
-        ensure => present,
-        number => $number,
-        start  => $start,
-        digits => $digits,
+    } else {
+      poolhome { $prefix:
+        ensure   => present,
+        number   => $number,
+        start    => $start,
+        digits   => $digits,
         homeroot => $homeroot,
-        uidmap => $vosupport::uidmap::uidmap,
-        require => File[$homeroot],
+        uidmap   => $vosupport::uidmap::uidmap,
+        require  => File[$homeroot],
       }
     }
   }

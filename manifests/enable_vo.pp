@@ -10,61 +10,60 @@ define vosupport::enable_vo (
   $vomappingdata,
   $poolaccounts,
   $vomsservers,
-  $configfile,
-)
-{    
-    if ($enable_voms) {
-      #lookup table for VO names in voms module, when the name of the voms module is different from the VO name
-      $voms_module_name= $voname? {
-         'envirogrids.vo.eu-egee.org' => "envirogrids",
-         'testers.eu-emi.eu' => "emitesters",
-         'testers2.eu-emi.eu'=> "emitesters",
-         'vo.gear.cern.ch' => 'gear',
-         'vo.l3.cern.ch' => 'l3',
-         'vo.opal.cern.ch' => 'opal',
-         'vo.sixt.cern.ch' => 'sixt',
-         'prod.vo.eu-eela.eu' => 'eela',
-         'vo.delphi.cern.ch' => 'delphi', 
-         'vo.aleph.cern.ch' => 'aleph',
-        default => $voname
-      }
-      include "voms::${voms_module_name}"      
+  $configfile,) {
+  if ($enable_voms) {
+    # lookup table for VO names in voms module, when the name of the voms module
+    # is different from the VO name
+    $voms_module_name = $voname ? {
+      'envirogrids.vo.eu-egee.org' => 'envirogrids',
+      'testers.eu-emi.eu'  => 'emitesters',
+      'testers2.eu-emi.eu' => 'emitesters',
+      'vo.gear.cern.ch'    => 'gear',
+      'vo.l3.cern.ch'      => 'l3',
+      'vo.opal.cern.ch'    => 'opal',
+      'vo.sixt.cern.ch'    => 'sixt',
+      'prod.vo.eu-eela.eu' => 'eela',
+      'vo.delphi.cern.ch'  => 'delphi',
+      'vo.aleph.cern.ch'   => 'aleph',
+      default              => $voname
     }
-    
-    if ($enable_poolaccounts) {
-      include vosupport::vo_poolaccounts      
-      Setuphome <| voname == $voname |>
-    }
-    
-    if ($enable_environment) {
-      include vosupport::vo_environment
-      Voenv  <| voname == $voname |>
-    }
-    
-    if $enable_mappings_for_service != undef {
-      include vosupport::vo_mappings
-      include vosupport::params
-      
-      concat::fragment { "${voname}_mapfile":
-      target  => "/etc/grid-security/grid-mapfile",
-      order   => "9",
+    include "voms::${voms_module_name}"
+  }
+
+  if ($enable_poolaccounts) {
+    include vosupport::vo_poolaccounts
+    Setuphome <| voname == $voname |>
+  }
+
+  if ($enable_environment) {
+    include vosupport::vo_environment
+    Voenv <| voname == $voname |>
+  }
+
+  if $enable_mappings_for_service != undef {
+    include vosupport::vo_mappings
+    include vosupport::params
+
+    concat::fragment { "${voname}_mapfile":
+      target  => '/etc/grid-security/grid-mapfile',
+      order   => '9',
       content => template('vosupport/gridmapfile.erb'),
     }
-      
-      concat::fragment{"${voname}_vomsmapfile": 
-        target  => "/etc/grid-security/voms-grid-mapfile",
-        order   => "9",
-        content => template('vosupport/gridmapfile.erb')
-      }
-      
-      concat::fragment{"${voname}_groupmapfile": 
-	target  => "/etc/grid-security/groupmapfile",
-	order   => "9",
-	content => template('vosupport/groupmapfile.erb')
-      }    
+
+    concat::fragment { "${voname}_vomsmapfile":
+      target  => '/etc/grid-security/voms-grid-mapfile',
+      order   => '9',
+      content => template('vosupport/gridmapfile.erb')
     }
-    
-    if $enable_mkgridmap_for_service != undef {
+
+    concat::fragment { "${voname}_groupmapfile":
+      target  => '/etc/grid-security/groupmapfile',
+      order   => '9',
+      content => template('vosupport/groupmapfile.erb')
+    }
+  }
+
+  if $enable_mkgridmap_for_service != undef {
     include vosupport::vo_lcgdm_mappings
 
     vosupport::enable_lcgdm_vo { $voname:
@@ -77,11 +76,9 @@ define vosupport::enable_vo (
       configfile            => $configfile,
     }
   }
-    
-    if $enable_gridmapdir {
-      include vosupport::vo_gridmapdir
-      Setupgridmapdir <| voname == $voname |>
-    }
+
+  if $enable_gridmapdir {
+    include vosupport::vo_gridmapdir
+    Setupgridmapdir <| voname == $voname |>
+  }
 }
-
-
