@@ -8,23 +8,27 @@ class vosupport (
   $enable_environment           = $vosupport::params::enable_environment,
   $enable_voms                  = $vosupport::params::enable_voms,
   $enable_gridmapdir_for_group  = 
-  $vosupport::params::enable_gridmapdir_for_group,)  
+  $vosupport::params::enable_gridmapdir_for_group,
+  $vomappingdata = $vosupport::params::vomappingdata,
+  $poolaccounts = $vosupport::params::poolaccounts,
+  $vomsservers = $vosupport::params::vomsservers,
+  $configfile = $vosupport::params::configfile,)  
 {
 
   include concat::setup
 
-  file {"grid-env-funcs.sh":
+  file {'grid-env-funcs.sh':
     path => '/usr/libexec/grid-env-funcs.sh',
     source => 'puppet:///modules/vosupport/grid-env-funcs.sh',
-    owner => "root",
-    group => "root",
+    owner => 'root',
+    group => 'root',
     mode => 0644,
   }
-  file {"clean-grid-env-funcs.sh":
+  file {'clean-grid-env-funcs.sh':
     path => '/usr/libexec/clean-grid-env-funcs.sh',
     source => 'puppet:///modules/vosupport/clean-grid-env-funcs.sh',
-    owner => "root",
-    group => "root",
+    owner => 'root',
+    group => 'root',
     mode => 0644,
   }
   
@@ -55,15 +59,23 @@ class vosupport (
   #enable the list of supported VOs from the class parameters (most likely coming from hiera)
   #for create_resources to be happy we need to convert the  $supported_vos array into a hash
   #i.e. yaml that looks like "{ vo1: {}, vo2: {}, etc. }"
-  $supported_vos_hash=parseyaml(inline_template("{ <%= @supported_vos.collect{ |voname| voname + ': {}' }.join(', ') %>} "))     
+  $supported_vos_hash=parseyaml(inline_template('{ <%= @supported_vos.collect{ |voname| voname + \': {}\' }.join(\', \') %>} '))     
   
-  $supported_vos_params={
-    enable_poolaccounts => $enable_poolaccounts,
-    enable_mappings_for_service => $enable_mappings_for_service,
+  #set defaults
+  $supported_vos_params = {
+    enable_poolaccounts          => $enable_poolaccounts,
+    enable_mappings_for_service  => $enable_mappings_for_service,
     enable_mkgridmap_for_service => $enable_mkgridmap_for_service,
-    enable_environment => $enable_environment,
-    enable_voms => $enable_voms,
-    enable_gridmapdir => $enable_gridmapdir_for_group? { undef => false, default => true}
+    enable_environment           => $enable_environment,
+    enable_voms                  => $enable_voms,
+    enable_gridmapdir            => $enable_gridmapdir_for_group ? {
+      undef   => false,
+      default => true
+    },
+    vomappingdata                => $vomappingdata,
+    poolaccounts                 => $poolaccounts,
+    vomsservers                  => $vomsservers,
+    configfile                   => $configfile,
   }
-  create_resources("vosupport::enable_vo", $supported_vos_hash, $supported_vos_params)
+  create_resources('vosupport::enable_vo', $supported_vos_hash, $supported_vos_params)
 }

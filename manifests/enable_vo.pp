@@ -1,12 +1,16 @@
-#enables vosupport features (accounts, mappings, environment)
+# enables vosupport features (accounts, mappings, environment)
 define vosupport::enable_vo (
-   $voname=$name,
-   $enable_poolaccounts = true,
-   $enable_mappings_for_service = undef,
-   $enable_mkgridmap_for_service = undef,
-   $enable_environment = true,
-   $enable_voms = true,
-   $enable_gridmapdir = false
+  $voname      = $name,
+  $enable_poolaccounts          = true,
+  $enable_mappings_for_service  = undef,
+  $enable_mkgridmap_for_service = undef,
+  $enable_environment           = true,
+  $enable_voms = true,
+  $enable_gridmapdir            = false,
+  $vomappingdata,
+  $poolaccounts,
+  $vomsservers,
+  $configfile,
 )
 {    
     if ($enable_voms) {
@@ -61,14 +65,18 @@ define vosupport::enable_vo (
     }
     
     if $enable_mkgridmap_for_service != undef {
-        include vosupport::vo_lcgdm_mappings
-        
-        vosupport::enable_lcgdm_vo{$voname:
-            voname=>$voname,
-            unprivilegedmkgridmap=>false,
-            gridservice=>$enable_mkgridmap_for_service
-        }
+    include vosupport::vo_lcgdm_mappings
+
+    vosupport::enable_lcgdm_vo { $voname:
+      voname                => $voname,
+      unprivilegedmkgridmap => false,
+      gridservice           => $enable_mkgridmap_for_service,
+      vomappingdata         => $vomappingdata,
+      poolaccounts          => $poolaccounts,
+      vomsservers           => $vomsservers,
+      configfile            => $configfile,
     }
+  }
     
     if $enable_gridmapdir {
       include vosupport::vo_gridmapdir

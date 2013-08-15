@@ -22,9 +22,13 @@ class vosupport::params {
   $poolaccounts                 = hiera_hash('vosupport::poolaccounts', undef)
 
   $vo2gidmap                    = hiera("vo2gidmap", undef)
-  
-  #create file fragments for the specified VO and service
-  $vomappingdata = hiera_hash('vosupport::mappings',undef)
-  
-  $voenvdefaults = hiera_hash('vosupport::voenv',undef)
+
+  # create file fragments for the specified VO and service
+  $vomappingdata                = hiera_hash('vosupport::mappings', undef)
+
+  $vomsservers                  = hiera_hash('vosupport::vomsservers', undef)
+
+  $configfile                   = "/etc/lcgdm-mkgridmap.conf"
+
+  $voenvdefaults                = hiera_hash('vosupport::voenv', undef)
 }
