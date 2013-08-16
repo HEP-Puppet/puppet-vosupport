@@ -34,7 +34,7 @@ class vosupport::vo_lcgdm_mappings (
   # for edg-mkgridmap
   package { 'edg-mkgridmap':
     ensure  => present,
-    require => Class['emirepos::emirepositories']
+    require => Yumrepo['EMI_3_base'],
   }
 
   cron { "${configfile}-cron":
