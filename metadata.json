@@ -12,6 +12,10 @@
     {
       "name": "puppetlabs/stdlib",
       "version_requirement": "\u003e\u003d4.0.0"
+    },
+    {
+      "name": "rocha/voms",
+      "version_requirement": "0.1.0"
     }
   ],
   "types": [
