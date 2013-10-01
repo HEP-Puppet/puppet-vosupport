@@ -3,7 +3,7 @@ class vosupport::params {
   # list of supported VOs we want to enable
   $supported_vos                = hiera('vosupport_supported_vos', [])
   # whether to create pool accounts
-  $enable_poolaccounts          = hiera('vosupport_enable_poolaccounts', True)
+  $enable_poolaccounts          = hiera('vosupport_enable_poolaccounts', true)
   # a service to enable mkgridmap for (LFC...)
   $enable_mkgridmap_for_service = hiera('vosupport_enable_mkgridmap_for_service', 
   undef)
@@ -11,9 +11,9 @@ class vosupport::params {
   $enable_mappings_for_service  = hiera('vosupport_enable_mappings_for_service', 
   undef)
   # whether to set up the gridenv for these VOs
-  $enable_environment           = hiera('vosupport_enable_environment', True)
+  $enable_environment           = hiera('vosupport_enable_environment', true)
   # whether to enable VOMS client for these VOs
-  $enable_voms                  = hiera('vosupport_enable_voms', True)
+  $enable_voms                  = hiera('vosupport_enable_voms', true)
   # if specified, create and populate gridmapdir with pool accounts and sets the
   # ownership of the gridmapdir to the specified group name
   $enable_gridmapdir_for_group  = hiera('vosupport_enable_gridmapdir_for_group', 

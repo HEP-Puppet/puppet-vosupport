@@ -1,14 +1,10 @@
 {
-  "name": "heppuppet-vosupport",
+  "name": "cernops-vosupport",
   "version": "0.0.1",
   "summary": "VO default definitions and setup tools",
   "author": "schwicke",
   "description": "This modules provides classes and definitions required to setup a list of supported VOs.",
   "dependencies": [
-    {
-      "name": "ripienaar/concat",
-      "version_requirement": "\u003e\u003d0.2.0"
-    },
     {
       "name": "puppetlabs/stdlib",
       "version_requirement": "\u003e\u003d4.0.0"
@@ -16,6 +12,10 @@
     {
       "name": "rocha/voms",
       "version_requirement": "0.1.0"
+    },
+    {
+      "name": "puppetlabs/concat",
+      "version_requirement": "\u003e\u003d1.0.0"
     }
   ],
   "types": [
@@ -93,7 +93,7 @@
     }
   ],
   "checksums": {},
-  "source": "",
+  "source": "https://github.com/cernops/puppet-vosupport.git",
   "project_page": "http://www.eu-emi.eu/",
   "license": "Apache License, Version 2.0 (the \"License\")"
 }
