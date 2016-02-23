@@ -1,0 +1,99 @@
+{
+  "name": "cernops-vosupport",
+  "version": "0.0.1",
+  "summary": "VO default definitions and setup tools",
+  "author": "schwicke",
+  "description": "This modules provides classes and definitions required to setup a list of supported VOs.",
+  "dependencies": [
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": "\u003e\u003d4.0.0"
+    },
+    {
+      "name": "rocha/voms",
+      "version_requirement": "0.1.0"
+    },
+    {
+      "name": "puppetlabs/concat",
+      "version_requirement": "\u003e\u003d1.0.0"
+    }
+  ],
+  "types": [
+    {
+      "parameters": [
+        {
+          "name": "prefix",
+          "doc": "account prefix"
+        },
+        {
+          "name": "number",
+          "doc": "number of pool accounts to be created"
+        },
+        {
+          "name": "start",
+          "doc": "first number to start with"
+        },
+        {
+          "name": "digits",
+          "doc": "number of digits"
+        },
+        {
+          "name": "homeroot",
+          "doc": "permissions of the secret"
+        },
+        {
+          "name": "defaultgid",
+          "doc": "default gid to be used if no gid set in the above array"
+        },
+        {
+          "name": "uidmap",
+          "doc": "map of pool account names to uid/gid pairs"
+        }
+      ],
+      "providers": [
+        {
+          "name": "poolhome",
+          "doc": "ensure that pool home directories are present"
+        }
+      ],
+      "name": "poolhome",
+      "doc": "ensure that the home directory exists and is owned by the right account"
+    },
+    {
+      "parameters": [
+        {
+          "name": "prefix",
+          "doc": "account prefix"
+        },
+        {
+          "name": "number",
+          "doc": "number of pool accounts to be created"
+        },
+        {
+          "name": "start",
+          "doc": "first number to start with"
+        },
+        {
+          "name": "digits",
+          "doc": "number of digits"
+        },
+        {
+          "name": "gridmapdir",
+          "doc": "path to the gridmapdir"
+        }
+      ],
+      "providers": [
+        {
+          "name": "gridmapdirentry",
+          "doc": "ensures that file entries for pool accounts are present in gridmapdir"
+        }
+      ],
+      "name": "gridmapdirentry",
+      "doc": "ensures that file entries for pool accounts are present in gridmapdir"
+    }
+  ],
+  "checksums": {},
+  "source": "https://github.com/cernops/puppet-vosupport.git",
+  "project_page": "http://www.eu-emi.eu/",
+  "license": "Apache License, Version 2.0 (the \"License\")"
+}
